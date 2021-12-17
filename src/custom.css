@@ -1,13 +1,26 @@
 body {
-    min-height: 100vh;
-    display: grid;
-    grid-template-rows: max-content 1fr;
+  min-height: 100vh;
+  display: grid;
+  grid-template-rows: max-content 1fr;
 }
 
 .navbar {
-    justify-content: center;
+  justify-content: center;
 }
 
 .container {
-    width: 100%;
+  width: 100%;
+}
+
+label.checkbox {
+  display: block;
+}
+
+label.checkbox:hover {
+  background-color: hsl(0, 0%, 86%);
+}
+
+input:checked ~ span {
+  text-decoration: line-through;
+  font-style: italic;
 }

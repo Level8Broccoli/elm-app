@@ -14,7 +14,7 @@ newTodo =
     Html.form []
         [ div [ class "field has-addons" ]
             [ div [ class "control is-expanded" ]
-                [ input [ class "input", attribute "type" "text", placeholder "Neuer Eintrag" ] []
+                [ input [ class "input", type_ "text", placeholder "Neuer Eintrag" ] []
                 ]
             , div [ class "control" ]
                 [ a [ class "button is-danger" ] [ text "Erstellen" ]
@@ -31,18 +31,18 @@ entryList list =
     else
         ul
             []
-            (List.map
-                entry
-                initialModel.entries
-            )
+            (List.map entry list)
 
 
 entry : String -> Html msg
-entry label =
+entry entryLabel =
     li []
         [ div [ class "card mt-3" ]
             [ div [ class "header" ]
-                [ p [ class "card-header-title" ] [ text label ]
+                [ label [ class "checkbox p-4" ]
+                    [ input [ type_ "checkbox", class "m-1" ] []
+                    , span [] [ text entryLabel ]
+                    ]
                 ]
             ]
         ]
