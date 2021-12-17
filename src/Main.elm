@@ -41,7 +41,7 @@ update msg model =
         { model | currentValue = msg.data }
 
     else
-        { model | entries = model.currentValue :: model.entries, currentValue = "" }
+        { model | entries = List.append model.entries [ model.currentValue ], currentValue = "" }
 
 
 
@@ -50,11 +50,9 @@ update msg model =
 
 view : Model -> Html Msg
 view model =
-    div []
-        [ section [ class "section" ]
-            [ newTodo model.currentValue ]
-        , section [ class "section" ]
-            [ entryList model.entries ]
+    section [ class "section" ]
+        [ entryList model.entries
+        , newTodo model.currentValue
         ]
 
 
@@ -70,13 +68,14 @@ handleSubmit =
 
 newTodo : String -> Html Msg
 newTodo currentValue =
-    Html.form [ onSubmit handleSubmit ]
-        [ div [ class "field has-addons" ]
+    Html.form [ onSubmit handleSubmit, class "mt-5" ]
+        [ hr [] []
+        , div [ class "field has-addons" ]
             [ div [ class "control is-expanded" ]
                 [ input [ class "input", type_ "text", placeholder "Neuer Eintrag", value currentValue, onInput handleUserInput ] []
                 ]
             , div [ class "control" ]
-                [ a [ class "button is-danger" ] [ text "Erstellen" ]
+                [ a [ class "button is-success" ] [ text "Erstellen" ]
                 ]
             ]
         ]

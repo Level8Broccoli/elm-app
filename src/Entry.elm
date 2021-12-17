@@ -1,6 +1,6 @@
 module Entry exposing (entry)
 
-import Html exposing (Html, div, input, label, li, span, text)
+import Html exposing (Html, button, div, i, input, label, li, span, text)
 import Html.Attributes exposing (class, type_)
 
 
@@ -12,6 +12,10 @@ entry entryLabel =
                 [ label [ class "checkbox p-4" ]
                     [ input [ type_ "checkbox", class "m-1" ] []
                     , span [] [ text entryLabel ]
+                    ]
+                , button [ class "button is-danger m-4" ]
+                    [ span [ class "icon" ]
+                        [ i [ class "fas fa-trash" ] [] ]
                     ]
                 ]
             ]
