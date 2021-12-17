@@ -4,6 +4,11 @@ import Html exposing (..)
 import Html.Attributes exposing (..)
 
 
+initialModel : { entries : List String }
+initialModel =
+    { entries = [ "Erster Eintrag", "Zweiter Eintrag" ] }
+
+
 newTodo : Html msg
 newTodo =
     Html.form []
@@ -18,10 +23,24 @@ newTodo =
         ]
 
 
+entryList : List String -> Html msg
+entryList list =
+    if List.isEmpty list then
+        text "Liste ist leer"
+
+    else
+        ul
+            []
+            (List.map
+                entry
+                initialModel.entries
+            )
+
+
 entry : String -> Html msg
 entry label =
     li []
-        [ div [ class "card" ]
+        [ div [ class "card mt-3" ]
             [ div [ class "header" ]
                 [ p [ class "card-header-title" ] [ text label ]
                 ]
@@ -36,9 +55,5 @@ main =
             [ newTodo
             ]
         , section [ class "section" ]
-            [ ul
-                []
-                [ entry "Test Eintrag"
-                ]
-            ]
+            [ entryList initialModel.entries ]
         ]
