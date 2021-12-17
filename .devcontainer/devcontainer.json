@@ -10,4 +10,7 @@
             }
         }
 	},
+	"extensions": [
+		"elmtooling.elm-ls-vscode"
+	],
 }
