@@ -58,9 +58,6 @@ update msg model =
     else if msg.description == "submitInput" then
         { model | entries = List.append model.entries [ model.currentValue ], currentValue = "" }
 
-    else if msg.description == "deleteEntry" then
-        { model | entries = removeAtIndex (Maybe.withDefault -1 (String.toInt msg.data)) model.entries }
-
     else
         model
 

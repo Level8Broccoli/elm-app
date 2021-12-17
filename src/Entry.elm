@@ -2,7 +2,6 @@ module Entry exposing (entry)
 
 import Html exposing (Html, button, div, i, input, label, li, span, text)
 import Html.Attributes exposing (class, type_)
-import Html.Events exposing (onClick)
 import Types exposing (Msg)
 
 
@@ -20,7 +19,7 @@ entry index entryLabel =
                     [ input [ type_ "checkbox", class "m-1" ] []
                     , span [ class "px-2 has-text-weight-bold" ] [ text entryLabel ]
                     ]
-                , button [ class "button is-danger m-4", onClick (handleClick index) ]
+                , button [ class "button is-danger m-4" ]
                     [ span [ class "icon" ]
                         [ i [ class "fas fa-trash" ] [] ]
                     ]
