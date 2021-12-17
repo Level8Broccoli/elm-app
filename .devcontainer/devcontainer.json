@@ -1,0 +1,13 @@
+{
+    "name": "elm-app",
+    "build": {
+        "dockerfile": "./Dockerfile"
+    },
+    "settings": {
+        "terminal.integrated.profiles.linux": {
+            "ash": {
+                "path": "/bin/ash"
+            }
+        }
+	},
+}
