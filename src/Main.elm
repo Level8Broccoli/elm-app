@@ -1,5 +1,7 @@
 module Main exposing (main)
 
+import Browser
+import Debug
 import Entry
 import Html exposing (..)
 import Html.Attributes exposing (..)
@@ -7,25 +9,71 @@ import Html.Events exposing (onInput, onSubmit)
 
 
 type alias Msg =
-    { userInput : String }
+    { description : String, data : String }
 
 
-initialModel : { entries : List String }
+type alias Model =
+    { entries : List String
+    , currentValue : String
+    }
+
+
+
+-- MODEL
+
+
+initialModel : Model
 initialModel =
-    { entries = [ "Erster Eintrag", "Zweiter Eintrag" ] }
+    { entries = [ "Erster Eintrag", "Zweiter Eintrag" ], currentValue = "" }
+
+
+
+-- UPDATE
+
+
+update : Msg -> Model -> Model
+update msg model =
+    let
+        _ =
+            Debug.log "Message" msg
+    in
+    if msg.description == "userInput" then
+        { model | currentValue = msg.data }
+
+    else
+        { model | entries = model.currentValue :: model.entries, currentValue = "" }
+
+
+
+-- VIEW
+
+
+view : Model -> Html Msg
+view model =
+    div []
+        [ section [ class "section" ]
+            [ newTodo model.currentValue ]
+        , section [ class "section" ]
+            [ entryList model.entries ]
+        ]
 
 
 handleUserInput : String -> Msg
-handleUserInput i =
-    { userInput = i }
+handleUserInput value =
+    { description = "userInput", data = value }
 
 
-newTodo : Html Msg
-newTodo =
-    Html.form []
+handleSubmit : Msg
+handleSubmit =
+    { description = "submitInput", data = "" }
+
+
+newTodo : String -> Html Msg
+newTodo currentValue =
+    Html.form [ onSubmit handleSubmit ]
         [ div [ class "field has-addons" ]
             [ div [ class "control is-expanded" ]
-                [ input [ class "input", type_ "text", placeholder "Neuer Eintrag", onInput handleUserInput ] []
+                [ input [ class "input", type_ "text", placeholder "Neuer Eintrag", value currentValue, onInput handleUserInput ] []
                 ]
             , div [ class "control" ]
                 [ a [ class "button is-danger" ] [ text "Erstellen" ]
@@ -43,15 +91,14 @@ entryList list =
         ul [] (List.map Entry.entry list)
 
 
-update msg model =
-    model
+
+-- MAIN
 
 
-main : Html Msg
+main : Program () Model Msg
 main =
-    div []
-        [ section [ class "section" ]
-            [ newTodo ]
-        , section [ class "section" ]
-            [ entryList initialModel.entries ]
-        ]
+    Browser.sandbox
+        { init = initialModel
+        , view = view
+        , update = update
+        }
