@@ -11,6 +11,7 @@
         }
 	},
 	"extensions": [
-		"elmtooling.elm-ls-vscode"
+		"elmtooling.elm-ls-vscode",
+		"ritwickdey.liveserver"
 	],
 }
