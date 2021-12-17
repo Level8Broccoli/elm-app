@@ -7,10 +7,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Elm App</title>
     <script src="dist/elm.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+    <link rel="stylesheet" href="src/custom.css">
+    <style>
+    
+    </style>
 </head>
 
-<body>
-    <div id="app"></div>
+<body class="has-background-light">
+    <nav class="navbar is-danger" role="navigation" aria-label="main navigation">
+        <h1 class="title has-text-white py-2 has-text-centered"> Todo</h1>
+    </nav>
+    <div class="container has-background-white p-5">
+        <div id="app"></div>
+    </div>
     <script>
         Elm.Main.init({
             node: document.getElementById("app")
