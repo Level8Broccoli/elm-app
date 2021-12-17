@@ -1,7 +1,13 @@
 module Main exposing (main)
 
+import Entry
 import Html exposing (..)
 import Html.Attributes exposing (..)
+import Html.Events exposing (onInput, onSubmit)
+
+
+type alias Msg =
+    { userInput : String }
 
 
 initialModel : { entries : List String }
@@ -9,12 +15,17 @@ initialModel =
     { entries = [ "Erster Eintrag", "Zweiter Eintrag" ] }
 
 
-newTodo : Html msg
+handleUserInput : String -> Msg
+handleUserInput i =
+    { userInput = i }
+
+
+newTodo : Html Msg
 newTodo =
     Html.form []
         [ div [ class "field has-addons" ]
             [ div [ class "control is-expanded" ]
-                [ input [ class "input", type_ "text", placeholder "Neuer Eintrag" ] []
+                [ input [ class "input", type_ "text", placeholder "Neuer Eintrag", onInput handleUserInput ] []
                 ]
             , div [ class "control" ]
                 [ a [ class "button is-danger" ] [ text "Erstellen" ]
@@ -29,31 +40,18 @@ entryList list =
         text "Liste ist leer"
 
     else
-        ul
-            []
-            (List.map entry list)
+        ul [] (List.map Entry.entry list)
 
 
-entry : String -> Html msg
-entry entryLabel =
-    li []
-        [ div [ class "card mt-3" ]
-            [ div [ class "header" ]
-                [ label [ class "checkbox p-4" ]
-                    [ input [ type_ "checkbox", class "m-1" ] []
-                    , span [] [ text entryLabel ]
-                    ]
-                ]
-            ]
-        ]
+update msg model =
+    model
 
 
-main : Html msg
+main : Html Msg
 main =
     div []
         [ section [ class "section" ]
-            [ newTodo
-            ]
+            [ newTodo ]
         , section [ class "section" ]
             [ entryList initialModel.entries ]
         ]

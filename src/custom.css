@@ -23,4 +23,5 @@ label.checkbox:hover {
 input:checked ~ span {
   text-decoration: line-through;
   font-style: italic;
+  color: hsl(348, 100%, 61%);
 }
