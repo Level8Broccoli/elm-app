@@ -6,5 +6,6 @@ import Html.Attributes exposing (class, style)
 
 main =
     div []
-        [ h1 [] [ "Elm HTML Demo" ]
+        [ h1 [] [ text "Elm HTML Demo" ]
+        , p [class "paragraph"] [text "paragraph ..."]
         ]

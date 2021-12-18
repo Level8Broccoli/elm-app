@@ -4,6 +4,7 @@ import Browser
 import Debug
 import Entry exposing (entry)
 import Form exposing (newTodo)
+import Helper exposing (removeAtIndex)
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Types exposing (Model, Msg(..))
@@ -39,6 +40,9 @@ update msg model =
                 | entries = List.append model.entries [ model.currentValue ]
                 , currentValue = ""
             }
+
+        DeleteEntry index ->
+            { model | entries = removeAtIndex index model.entries }
 
         Error ->
             model

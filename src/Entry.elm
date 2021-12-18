@@ -7,8 +7,8 @@ import Types exposing (Msg(..))
 
 
 handleClick : Int -> Msg
-handleClick int =
-    Error
+handleClick index =
+    DeleteEntry index
 
 
 entry : Int -> String -> Html Msg

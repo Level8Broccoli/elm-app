@@ -4,6 +4,7 @@ module Types exposing (..)
 type Msg
     = UserInput String
     | SubmitInput
+    | DeleteEntry Int
     | Error
 
 
