@@ -4,6 +4,7 @@ import Html exposing (Html, button, div, hr, input, text)
 import Html.Attributes exposing (class, placeholder, type_, value)
 import Html.Events exposing (onInput, onSubmit)
 import Types exposing (..)
+import Html exposing (form)
 
 
 handleUserInput : String -> Msg
@@ -22,7 +23,7 @@ handleSubmit currentUserInput =
 
 newTodo : String -> Html Msg
 newTodo currentValue =
-    Html.form [ onSubmit (handleSubmit currentValue), class "mt-5" ]
+    form [ onSubmit (handleSubmit currentValue), class "mt-5" ]
         [ hr [] []
         , div [ class "field has-addons" ]
             [ div [ class "control is-expanded" ]

@@ -15,35 +15,13 @@ import Types exposing (Model, Msg(..))
 
 initialModel : Model
 initialModel =
-    { entries = [ "Erster Eintrag", "Zweiter Eintrag" ], currentValue = "" }
+    { entries = [ "Erster Eintrag", "Zweiter Eintrag" ]
+    , currentValue = ""
+    }
 
 
 
 -- UPDATE
-
-
-removeAtIndex : Int -> List a -> List a
-removeAtIndex index list =
-    if index < 0 || List.length list < index then
-        list
-
-    else if index == 0 then
-        List.drop 1 list
-
-    else
-        let
-            head =
-                List.head list
-
-            tail =
-                Maybe.withDefault [] (List.tail list)
-        in
-        case head of
-            Nothing ->
-                list
-
-            Just a ->
-                a :: removeAtIndex (index - 1) tail
 
 
 update : Msg -> Model -> Model
