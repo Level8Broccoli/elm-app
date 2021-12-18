@@ -1,8 +1,10 @@
 module Types exposing (..)
 
 
-type alias Msg =
-    { description : String, data : String }
+type Msg
+    = UserInput String
+    | SubmitInput
+    | Error
 
 
 type alias Model =

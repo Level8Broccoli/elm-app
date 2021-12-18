@@ -6,7 +6,7 @@ import Entry exposing (entry)
 import Form exposing (newTodo)
 import Html exposing (..)
 import Html.Attributes exposing (..)
-import Types exposing (Model, Msg)
+import Types exposing (Model, Msg(..))
 
 
 
@@ -52,14 +52,18 @@ update msg model =
         _ =
             Debug.log "Message" msg
     in
-    if msg.description == "userInput" then
-        { model | currentValue = msg.data }
+    case msg of
+        UserInput input ->
+            { model | currentValue = input }
 
-    else if msg.description == "submitInput" then
-        { model | entries = List.append model.entries [ model.currentValue ], currentValue = "" }
+        SubmitInput ->
+            { model
+                | entries = List.append model.entries [ model.currentValue ]
+                , currentValue = ""
+            }
 
-    else
-        model
+        Error ->
+            model
 
 
 

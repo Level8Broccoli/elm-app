@@ -3,21 +3,21 @@ module Form exposing (newTodo)
 import Html exposing (Html, button, div, hr, input, text)
 import Html.Attributes exposing (class, placeholder, type_, value)
 import Html.Events exposing (onInput, onSubmit)
-import Types exposing (Msg)
+import Types exposing (..)
 
 
 handleUserInput : String -> Msg
 handleUserInput value =
-    { description = "userInput", data = value }
+    UserInput value
 
 
 handleSubmit : String -> Msg
 handleSubmit currentUserInput =
     if String.length currentUserInput == 0 then
-        { description = "error", data = "" }
+        Error
 
     else
-        { description = "submitInput", data = "" }
+        SubmitInput
 
 
 newTodo : String -> Html Msg
