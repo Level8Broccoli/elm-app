@@ -1,6 +1,6 @@
 # elm-app
 
-## Counter example
+## Basic example
 
 Start server with
 
@@ -8,7 +8,7 @@ Start server with
 elm reactor
 ```
 
-And Elm will start a server on which you can try out the Elm code directly. Navigate to `http://localhost:8000/src/Counter.elm` to play with the Counter example.
+And Elm will start a server on which you can try out the Elm code directly. Navigate to the Elm file to display the HTML example or play with the Counter.
 
 ## Web App example
 
